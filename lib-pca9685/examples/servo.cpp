@@ -42,6 +42,8 @@ int main(int argc, char **argv) {
 	}
 
 	PCA9685Servo servo;
+    PCA9685Servo servo2(0x41);
+    
 
 	// MG90S Micro Servo
 	servo.SetLeftUs(700);
@@ -56,35 +58,36 @@ int main(int argc, char **argv) {
 	servo.SetAngle(CHANNEL(2), ANGLE(90));
 	servo.SetAngle(CHANNEL(3), ANGLE(90));
 
-	puts("Servo 0:90  Servo 1:90");
-	puts("Servo 2:90  Servo 3:90");
+    servo2.SetAngle(CHANNEL(0), ANGLE(90));
+
+	puts("Servos to 90 ");
 
 	sleep(4);
 
 	for (;;) {
-		servo.SetAngle(CHANNEL(0), ANGLE(90));
+		servo.SetAngle(CHANNEL(0), ANGLE(0));
 		servo.SetAngle(CHANNEL(1), ANGLE(0));
 		servo.SetAngle(CHANNEL(2), ANGLE(0));
 		servo.SetAngle(CHANNEL(3), ANGLE(0));
+
+		servo2.SetAngle(CHANNEL(0), ANGLE(0));
+
 		puts("");
-		puts("Servo 0:90  Servo 1:0");
-		puts("Servo 2:0  Servo 3:0");
+		puts("Servos to 0 ");
 		sleep(2);
-		servo.SetAngle(CHANNEL(0), ANGLE(180));
-		servo.SetAngle(CHANNEL(1), ANGLE(180));
+		servo.SetAngle(CHANNEL(0), ANGLE(90));
+		servo.SetAngle(CHANNEL(1), ANGLE(90));
 		servo.SetAngle(CHANNEL(2), ANGLE(90));
 		servo.SetAngle(CHANNEL(3), ANGLE(90));
 		puts("");
-		puts("Servo 0:180 Servo 1:180");
-		puts("Servo 2:90  Servo 3:90");
+		puts("Servos to 90 ");
 		sleep(2);
-		servo.SetAngle(CHANNEL(0), ANGLE(0));
-		servo.SetAngle(CHANNEL(1), ANGLE(90));
+		servo.SetAngle(CHANNEL(0), ANGLE(180));
+		servo.SetAngle(CHANNEL(1), ANGLE(180));
 		servo.SetAngle(CHANNEL(2), ANGLE(180));
 		servo.SetAngle(CHANNEL(3), ANGLE(180));
 		puts("");
-		puts("Servo 0:0   Servo 1:90");
-		puts("Servo 2:180  Servo 3:180");
+		puts("Servos to 180 ");
 		sleep(2);
 	}
 
